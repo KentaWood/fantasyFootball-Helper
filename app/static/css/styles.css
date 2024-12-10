@@ -1,0 +1,109 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e2f; /* Dark slate */
+    color: #e6e6e6; /* Soft white */
+}
+
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(90deg, #3a7bd5, #00d2ff); /* Cooler gradient */
+    color: #fff;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header p {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+main {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-section, .output-section {
+    background: #292b44; /* Subtle dark purple */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add depth */
+    border-radius: 12px;
+    padding: 25px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-section:hover, .output-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); /* Elevation on hover */
+}
+
+label, select, textarea, button {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #e6e6e6;
+    background: #1e1e2f;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    background: #00d2ff;
+    color: #1e1e2f;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #3a7bd5;
+    transform: scale(1.05); /* Slight zoom */
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #3a7bd5;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Add media query for mobile responsiveness */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    header p {
+        font-size: 1rem;
+    }
+    button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}

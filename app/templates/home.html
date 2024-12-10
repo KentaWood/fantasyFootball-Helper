@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Fantasy Helper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🏈 Football Fantasy Helper</h1>
+        <p>Analyze players, compare stats, and enhance your fantasy football experience.</p>
+    </header>
+    
+    <main>
+        <section class="form-section">
+            <h2>Get Started</h2>
+            <form id="helper-form">
+                <label for="player1">Choose a player:</label>
+                <select id="player1" name="player1">
+                    <!-- Populate dropdown dynamically -->
+                    {% for player in players %}
+                        <option value="{{ player }}">{{ player }}</option>
+                    {% endfor %}
+                </select>
+
+                <div id="compare-section" style="display: none;">
+                    <label for="player2">Choose a second player (for comparison):</label>
+                    <select id="player2" name="player2">
+                        <!-- Populate dropdown dynamically -->
+                        {% for player in players %}
+                            <option value="{{ player }}">{{ player }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <h3>Choose your action:</h3>
+                <div class="actions">
+                    <input type="radio" id="ask" name="action" value="ask" checked>
+                    <label for="ask">Ask about a player</label>
+                    <br>
+                    <input type="radio" id="compare" name="action" value="compare">
+                    <label for="compare">Compare two players</label>
+                </div>
+
+                <label for="prompt">Add a custom prompt (optional):</label>
+                <textarea id="prompt" name="prompt" rows="3" placeholder="Enter your prompt here..."></textarea>
+
+                <button type="button" id="submit-btn">Submit</button>
+            </form>
+        </section>
+
+        <section class="output-section">
+            <h2>Output</h2>
+            <div id="output-box">
+                <p>Results will appear here.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Football Fantasy Helper. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript to handle form submission and dynamic visibility
+        const askRadio = document.getElementById("ask");
+        const compareRadio = document.getElementById("compare");
+        const compareSection = document.getElementById("compare-section");
+
+        // Show or hide the second player dropdown based on the selected action
+        askRadio.addEventListener("change", () => {
+            compareSection.style.display = "none";
+        });
+
+        compareRadio.addEventListener("change", () => {
+            compareSection.style.display = "block";
+        });
+
+        const form = document.getElementById("helper-form");
+        const submitButton = document.getElementById("submit-btn");
+        const outputBox = document.getElementById("output-box");
+
+        submitButton.addEventListener("click", async () => {
+            // Gather form data
+            const player1 = document.getElementById("player1").value;
+            const player2 = document.getElementById("player2").value;
+            const action = document.querySelector('input[name="action"]:checked').value;
+            const prompt = document.getElementById("prompt").value;
+
+            // Prepare data to send
+            const requestData = {
+                player1,
+                player2: action === "compare" ? player2 : null,
+                action,
+                prompt,
+            };
+
+            // Send request to Flask backend
+            const response = await fetch("/process", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            // Update output
+            const responseData = await response.json();
+
+            // Insert LaTeX into the output box
+            outputBox.innerHTML = `<p>${responseData.output}</p>`;
+
+            // Render LaTeX using MathJax
+            MathJax.typesetPromise();
+        });
+    </script>
+</body>
+</html>
