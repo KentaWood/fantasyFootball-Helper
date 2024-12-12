@@ -8,4 +8,4 @@ __pycache__/
 experiment_tests/
 myenv/
 .env
-
+fun.py

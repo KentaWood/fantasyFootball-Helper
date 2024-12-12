@@ -2,6 +2,29 @@ from espn_api import football
 from espn_api.football import League
 from config import ESPN_2, SWID,LEAGUE_ID
 
+def get_all_players(league, week):
+    """
+    Fetch all players in the league, including those on rosters and free agents.
+
+    Args:
+        league (League): An instance of the League class.
+        week (int): The week for which to fetch free agents.
+
+    Returns:
+        List[Player]: A list of all Player objects.
+    """
+    all_players = []
+
+    # Get all players currently on team rosters
+    for team in league.teams:
+        all_players.extend(team.roster)  # Team rosters contain Player objects
+
+    # Get all free agents for the given week
+    free_agents = league.free_agents(week=week)
+    all_players.extend(free_agents)
+
+    return [player.name for player in all_players]
+
 
 # Replace with your actual league_id and year
 YEAR = 2024
@@ -48,6 +71,38 @@ def get_player_names(team):
         return [player.name for player in team.roster]
     return []
 
+def get_player_proj(league, player_name, current_week, myTeam=None):
+    """
+    >>> test = MyTeam(LEAGUE_ID, YEAR, ESPN_2, SWID, WOODY_ID)
+    >>> get_player_proj(LEAGUE,"Christian Watson",15)
+    10.63
+    >>> get_player_proj(LEAGUE,"Patrick Mahomes",15,myTeam=test)
+    18.6
+    """
+    if myTeam:
+        for box_score in myTeam.league.box_scores(myTeam.curr_week):
+                # Combine home and away lineups
+                all_players = box_score.home_lineup + box_score.away_lineup
+                for player in all_players:
+                    if player.name == player_name:
+                        return player.projected_points
+    
+    # Get the list of free agents for the current week
+    free_agents = league.free_agents(week=current_week)
+    
+    #look through free agents
+    for free_agent in free_agents:
+        # Check if the free agent's name matches the input
+        if free_agent.name == player_name:
+            # Return the projected points for the specified week
+            return free_agent.stats.get(current_week, {}).get('projected_points', 0)
+    
+    
+    # If the player is not found, return a message or None
+    return f"{player_name} not found."
+
+    
+
 
 
     
@@ -81,28 +136,7 @@ class MyTeam:
         # Set team attributes
         self.roster = self.team.roster  # List of players on the team
         self.player_names = get_player_names(self.team) # List of player names
-        self.curr_week = self.league.scoringPeriodId - 1 # Current week in the league
-        
-    def get_player_projection(self, player_name):
-        """
-        Get projected points for a specific player.
-
-        :param player_name: The name of the player to search for.
-        :param box_scores: List of box scores for the current week.
-        :return: Projected points for the player, or None if the player is not found.
-        
-        >>> test = MyTeam(LEAGUE_ID, YEAR, ESPN_2, SWID, WOODY_ID)
-        >>> test.get_player_projection("Patrick Mahomes")
-        17.05
-        """
-        # print(self.curr_week)
-        for box_score in self.league.box_scores(self.curr_week):
-            # Combine home and away lineups
-            all_players = box_score.home_lineup + box_score.away_lineup
-            for player in all_players:
-                if player.name == player_name:
-                    return player.projected_points  # Return the projection if the player is found
-        return None  # Return None if the player is not found
+        self.curr_week = self.league.scoringPeriodId # Current week in the league
         
         
     
@@ -123,4 +157,4 @@ if __name__ == "__main__":
    
    woody = MyTeam(LEAGUE_ID, YEAR, ESPN_2, SWID, WOODY_ID)
    
-   print(woody.player_names)
+#    print(get_free_player_proj(LEAGUE,"Christian Watson",15))

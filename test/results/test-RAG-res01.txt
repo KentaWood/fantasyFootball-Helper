@@ -1,0 +1,71 @@
+Querying for player: Christian Watson
+Total articles retrieved: 2
+Articles mentioning 'Christian Watson': 2
+
+Querying for player: Packers D ST
+Total articles retrieved: 2
+Articles mentioning 'Packers D ST': 0
+
+Querying for player: Wil Lutz
+Total articles retrieved: 2
+Articles mentioning 'Wil Lutz': 2
+
+Querying for player: A.J. Brown
+Total articles retrieved: 2
+Articles mentioning 'A.J. Brown': 2
+
+Querying for player: Alvin Kamara
+Total articles retrieved: 2
+Articles mentioning 'Alvin Kamara': 2
+
+Querying for player: Calvin Ridley
+Total articles retrieved: 2
+Articles mentioning 'Calvin Ridley': 2
+
+Querying for player: Chase McLaughlin
+Total articles retrieved: 2
+Articles mentioning 'Chase McLaughlin': 1
+
+Querying for player: Courtland Sutton
+Total articles retrieved: 2
+Articles mentioning 'Courtland Sutton': 0
+
+Querying for player: Hunter Henry
+Total articles retrieved: 2
+Articles mentioning 'Hunter Henry': 2
+
+Querying for player: Jake Ferguson
+Total articles retrieved: 2
+Articles mentioning 'Jake Ferguson': 1
+
+Querying for player: Keon Coleman
+Total articles retrieved: 2
+Articles mentioning 'Keon Coleman': 1
+
+Querying for player: Nico Collins
+Total articles retrieved: 2
+Articles mentioning 'Nico Collins': 2
+
+Querying for player: Patrick Mahomes
+Total articles retrieved: 2
+Articles mentioning 'Patrick Mahomes': 2
+
+Querying for player: Sam Darnold
+Total articles retrieved: 2
+Articles mentioning 'Sam Darnold': 1
+
+Querying for player: Saquon Barkley
+Total articles retrieved: 2
+Articles mentioning 'Saquon Barkley': 2
+
+Querying for player: Texans D ST
+Total articles retrieved: 2
+Articles mentioning 'Texans D ST': 0
+
+Querying for player: Tyrone Tracy Jr.
+Total articles retrieved: 2
+Articles mentioning 'Tyrone Tracy Jr.': 2
+
+Overall matches across all players: 24
+Players with matched articles: 14
+Players without matched articles: 3

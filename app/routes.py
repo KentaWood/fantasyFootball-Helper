@@ -13,14 +13,20 @@ main_bp = Blueprint('main', __name__)
 YEAR = 2024
 WOODY_ID = 9
 woody = MyTeam(LEAGUE_ID, YEAR, ESPN_2, SWID, WOODY_ID)
-
-
+CURR_WEEK = woody.curr_week
+LEAGUE = League(
+            league_id=LEAGUE_ID,
+            year=YEAR,
+            espn_s2=ESPN_2,
+            swid=SWID
+        )
+PLAYER_NAMES =sorted(get_all_players(LEAGUE,CURR_WEEK))
 
 # Define the home route
 @main_bp.route("/")
 def home():
     
-    return render_template("home.html", players=woody.player_names + ["Christian Watson", "Packers D/ST", "Wil Lutz"])
+    return render_template("home.html", players=PLAYER_NAMES)
 
 # Define an API route for processing user input
 @main_bp.route("/process", methods=["POST"])
@@ -39,8 +45,8 @@ def process():
         player2_RAG = query_weaviate(player2)
 
         # Get projections for each player
-        player1_proj = woody.get_player_projection(player1)
-        player2_proj = woody.get_player_projection(player2)
+        player1_proj = get_player_proj(LEAGUE, player1, CURR_WEEK, woody)
+        player2_proj = get_player_proj(LEAGUE, player1, CURR_WEEK, woody)
 
         # Build the prompt for OpenAI
         full_prompt = (
@@ -62,7 +68,7 @@ def process():
         player1_RAG = query_weaviate(player1)
 
         # Get projection for player1
-        player1_proj = woody.get_player_projection(player1)
+        player1_proj = get_player_proj(LEAGUE, player1, CURR_WEEK, woody)
 
         # Build the prompt for OpenAI
         full_prompt = (
