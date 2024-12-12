@@ -1,7 +1,3 @@
-Here’s the updated README for **Fantasy-Football-Helper**:
-
----
-
 # **Fantasy-Football-Helper**
 
 ### **Your Ultimate Interactive Fantasy Football Assistant**
