@@ -1,0 +1,52 @@
+Fantasy-Football-Helper
+
+just a cool and interactive fantasy elper that can help make you make deiscions to who would start! IT uses a RAG system of prepend stats of the pklayer and relevant articels using WEviate and their text to vecoter tramformer 
+If yo uhave a espn Fantasy league you can use your exact league to helkp you even further 
+
+setup 
+
+after cloning the repo
+
+create a .env
+touch .env
+
+make sure to fill in these details for access for openai api and ESPN fantasy API
+
+SWID=<fill in>
+ESPN_2= <fill in>
+API_KEY_OPENAI=<fill in>
+LEAGUE_ID =<fill in>
+
+run 
+
+docker-compsoe up -d 
+
+
+and 
+
+add the url of the player in the 'wev_db/player_urls/[categorize]
+
+
+ run 
+
+ python3 
+ python3 wev_db/create_tranformer_dataSchema.py 
+
+ and if you want to add a whole direcotry this will add all the fiels in the direcotry
+
+ python3 wev_db/add_url_to_transformerDB.py --file wev_db/player_urls/[category_direotyr
+
+ python3
+ 
+ or if oyu want to add a specifcal file 
+python3 wev_db/add_url_to_transformerDB.py --file wev_db/player_urls/[category_direotyr]/[player_name]
+
+
+and then run 
+
+python3 run.py
+
+
+now go to http://127.0.0.1:5000
+
+and choose two players to compare or ask question about one!
