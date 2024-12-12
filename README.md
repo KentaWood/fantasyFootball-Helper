@@ -6,16 +6,15 @@ Here’s the updated README for **Fantasy-Football-Helper**:
 
 ### **Your Ultimate Interactive Fantasy Football Assistant**
 
-Fantasy-Football-Helper is a cool, interactive tool designed to help you make smarter decisions about who to start in your fantasy football lineup. Leveraging cutting-edge **Retrieval-Augmented Generation (RAG)** technology, it prepends player stats and relevant articles using **Weaviate** and its **text-to-vector transformers**. If you have an ESPN Fantasy League, this tool takes it a step further by integrating directly with your league data for tailored recommendations!
+Fantasy-Football-Helper is a cool, interactive tool designed to help you make smarter decisions about who to start in your fantasy football lineup. Leveraging **Retrieval-Augmented Generation (RAG)** technology, and relevant articles using **Weaviate** and its **text-to-vector transformers**. If you have an ESPN Fantasy League, this tool takes it a step further by integrating directly with your league data for tailored recommendations!
 
 ---
 
 ## **Features**
 
 - **Player Comparisons**: Select two players to compare and get detailed projections, stats, and context to make the best choice.
-- **Ask Questions**: Query about specific players and receive insights augmented by stats and relevant articles.
 - **League Integration**: Use your exact ESPN Fantasy League data to further personalize recommendations.
-- **RAG-Powered Insights**: Combines player stats with contextual data from articles for smarter, data-backed advice.
+- **RAG**: Combines player stats with contextual data from articles for smarter, data-backed advice.
 
 ---
 
